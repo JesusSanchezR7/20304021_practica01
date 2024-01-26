@@ -16,7 +16,7 @@ app.get('/tasks', (req, res) => {
   res.json(tasks);
 });
 
-// Get a specific task
+// Get
 app.get('/tasks/:id', (req, res) => {
   const taskId = parseInt(req.params.id);
   const task = tasks.find((t) => t.id === taskId);
@@ -24,7 +24,7 @@ app.get('/tasks/:id', (req, res) => {
   if (task) {
     res.json(task);
   } else {
-    res.status(404).json({ error: 'Task not found' });
+    res.status(404).json({ error: 'no encontrada' });
   }
 });
 
