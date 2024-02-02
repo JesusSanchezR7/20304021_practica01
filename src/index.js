@@ -16,7 +16,7 @@ app.get('/tasks', (req, res) => {
   res.json(tasks);
 });
 
-// Get a specific task
+
 app.get('/tasks/:id', (req, res) => {
   const taskId = parseInt(req.params.id);
   const task = tasks.find((t) => t.id === taskId);
@@ -63,5 +63,5 @@ app.listen(port, () => {
 
 
 //docker ps funciona para ver que container estan siendo corriendo 
-
 //docker remove 
+//
