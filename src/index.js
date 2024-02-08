@@ -1,5 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const tasksRepository =  require("./tasksRepository")
+
 
 const app = express();
 const port = 3000;
@@ -11,15 +13,16 @@ let tasks = [
   { id: 2, title: 'Task 2', description: 'Do something else' },
 ];
 
-// Get all tasks
+// TOMAR TODAS LAS TAREAS
 app.get('/tasks', (req, res) => {
+  const tasks = tasksRepository.getAll()
   res.json(tasks);
 });
 
-// Get a specific task
+// TOMAR UNA TAREA EN ESPECIFICO
 app.get('/tasks/:id', (req, res) => {
   const taskId = parseInt(req.params.id);
-  const task = tasks.find((t) => t.id === taskId);
+  const task = tasksRepository.getById(taskId)
 
   if (task) {
     res.json(task);
@@ -28,40 +31,33 @@ app.get('/tasks/:id', (req, res) => {
   }
 });
 
-// Create a new task
+
 app.post('/tasks', (req, res) => {
   const newTask = req.body;
-  newTask.id = tasks.length + 1;
-  tasks.push(newTask);
+  tasksRepository.createTask(newTask)
   res.status(201).json(newTask);
 });
 
-// Update a task
+// ACTUALIZACION DE UNA TAREA 
 app.put('/tasks/:id', (req, res) => {
   const taskId = parseInt(req.params.id);
   const updatedTask = req.body;
-  const index = tasks.findIndex((t) => t.id === taskId);
+  const task = tasksRepository.updateTask(taskId, updatedTask)
 
-  if (index !== -1) {
-    tasks[index] = { ...tasks[index], ...updatedTask };
-    res.json(tasks[index]);
+  if (task != null) {
+    res.json(task);
   } else {
     res.status(404).json({ error: 'Task not found' });
   }
 });
 
-// Delete a task
+// ELIMINACION DE UNA TAREA
 app.delete('/tasks/:id', (req, res) => {
   const taskId = parseInt(req.params.id);
-  tasks = tasks.filter((t) => t.id !== taskId);
+  tasksRepository.deleteTask(taskId)
   res.sendStatus(204);
 });
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-
-
-//docker ps funciona para ver que container estan siendo corriendo 
-
-//docker remove 
