@@ -1,7 +1,6 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+/*************************/
+const app = require('./api');
 
-const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
@@ -57,11 +56,7 @@ app.delete('/tasks/:id', (req, res) => {
   res.sendStatus(204);
 });
 
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-
-
-//docker ps funciona para ver que container estan siendo corriendo 
-
-//docker remove 
