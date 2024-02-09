@@ -1,8 +1,8 @@
 // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 let tasks = [
-    { id: 1, title: 'Task 1', description: 'HOLA Q TAL' },
-    { id: 2, title: 'Task 2', description: 'Happy =) ' },
-];
+    { id: 1, title: "Task 1", description: "Do something" },
+    { id: 2, title: "Task 2", description: "Do something else" },
+  ];
 
 // TOMAR TODAS LAS TAREAS 
 function getAll() {
@@ -24,12 +24,12 @@ function createTask(newTask) {
 function updateTask(taskId, updatedTask) {
     const index = tasks.findIndex((t) => t.id === taskId);
     if (index !== -1) {
-        tasks[index] = { ...tasks[index], ...updatedTask };
-        return tasks[index];
+      tasks[index] = { ...tasks[index], ...updatedTask };
+      return tasks[index];
     } else {
-        return null;
+      return null;
     }
-}
+  }
 
 // ELIMINACION DE UNA TAREA 
 function deleteTask(taskId) {
@@ -41,5 +41,5 @@ module.exports = {
     getById,
     createTask,
     updateTask,
-    deleteTask
-};
+    deleteTask,
+  };
