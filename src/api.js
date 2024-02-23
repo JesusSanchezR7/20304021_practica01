@@ -16,6 +16,7 @@ app.get("/issue", (req, res) => {
   res.json(issue);
 });
 
+// aqui se le modifico 
 // TOMAR TODAS LAS TAREAS
 app.get('/tasks', (req, res) => {
   const tasks = tasksRepository.getAll()
