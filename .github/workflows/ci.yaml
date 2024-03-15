@@ -3,8 +3,10 @@ name: API CI
 on:
    push:
     branches: [main, devaloment]
-  pull_request:
+   pull_request:
       branches: [main, devaloment]
+   branch_protection_rule:
+     types: [created, deleted]
 
 jobs:
   testing:
